@@ -1,3 +1,5 @@
+package Player;
+
 import Items.Item;
 
 import java.util.ArrayList;
@@ -20,9 +22,8 @@ public class Inventory {
     }
 
     public void printInventory() {
-        for (Item i : inventory) {
-            System.out.println(i.toString());
-        }
+        System.out.println("----------INVENTORY----------");
+        inventory.forEach(System.out::println);
     }
 
 }

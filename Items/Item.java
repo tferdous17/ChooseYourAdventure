@@ -1,9 +1,11 @@
 package Items;
 
 public class Item {
-    String itemName;
-    double itemPrice;
-    public Item() {
+    private final String itemName;
+    private final double itemPrice;
+    public Item(String itemName, double itemPrice) {
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
     }
 
     public String getItemName() {
