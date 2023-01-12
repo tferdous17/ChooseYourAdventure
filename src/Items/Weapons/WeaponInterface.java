@@ -1,4 +1,4 @@
-package Items.Weapons;
+package src.Items.Weapons;
 
 public interface WeaponInterface {
 }

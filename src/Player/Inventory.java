@@ -1,6 +1,6 @@
-package Player;
+package src.Player;
 
-import Items.Item;
+import src.Items.Item;
 
 import java.util.ArrayList;
 

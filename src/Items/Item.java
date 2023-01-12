@@ -1,4 +1,4 @@
-package Items;
+package src.Items;
 
 public class Item {
     private final String itemName;

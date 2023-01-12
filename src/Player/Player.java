@@ -1,8 +1,4 @@
-package Player;
-
-import Items.*;
-import Items.Armor.Leather_Armor;
-import Items.Weapons.Rusty_Sword;
+package src.Player;
 
 public class Player extends Movement {
     private final String name;

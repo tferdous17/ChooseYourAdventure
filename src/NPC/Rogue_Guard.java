@@ -1,4 +1,4 @@
-package NPC;
+package src.NPC;
 
 public class Rogue_Guard extends NPC {
     public Rogue_Guard() {
