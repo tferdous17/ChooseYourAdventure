@@ -1,6 +1,4 @@
-package src.Items.Weapons;
-
-import src.Items.Item;
+package Items.Weapons;
 
 public class Rusty_Sword extends Weapon {
     String itemName;

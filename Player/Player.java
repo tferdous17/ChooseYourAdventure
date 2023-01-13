@@ -1,6 +1,6 @@
-package src.Player;
+package Player;
 
-import src.Items.Item;
+import Items.Item;
 
 public class Player extends Movement {
     private final String name;

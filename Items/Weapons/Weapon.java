@@ -1,6 +1,6 @@
-package src.Items.Weapons;
+package Items.Weapons;
 
-import src.Items.Item;
+import Items.Item;
 
 public class Weapon extends Item implements WeaponInterface {
     int damage;

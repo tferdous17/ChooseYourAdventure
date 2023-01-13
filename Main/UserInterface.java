@@ -1,12 +1,12 @@
-package src.Main;
+package Main;
 
-import src.Items.Armor.Leather_Armor;
-import src.Items.Weapons.Rusty_Sword;
-import src.NPC.Hog;
-import src.NPC.Lowly_Bandit;
-import src.NPC.NPC;
-import src.NPC.Rogue_Guard;
-import src.Player.Player;
+import Items.Armor.Leather_Armor;
+import Items.Weapons.Rusty_Sword;
+import NPC.Hog;
+import NPC.Lowly_Bandit;
+import NPC.NPC;
+import NPC.Rogue_Guard;
+import Player.Player;
 
 import java.util.Random;
 import java.util.Scanner;

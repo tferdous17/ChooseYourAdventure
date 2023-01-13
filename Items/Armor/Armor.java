@@ -1,6 +1,6 @@
-package src.Items.Armor;
+package Items.Armor;
 
-import src.Items.Item;
+import Items.Item;
 
 public class Armor extends Item implements ArmorInterface {
     public Armor(String itemName, double itemPrice) {

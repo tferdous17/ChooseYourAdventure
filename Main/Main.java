@@ -1,7 +1,4 @@
-package src.Main;
-
-import src.NPC.*;
-import src.Player.*;
+package Main;
 
 import java.util.Scanner;
 

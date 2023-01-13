@@ -1,4 +1,4 @@
-package src.NPC;
+package NPC;
 
 public class Hog extends NPC {
     public Hog() {

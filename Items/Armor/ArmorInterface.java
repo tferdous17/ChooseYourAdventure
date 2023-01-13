@@ -1,4 +1,4 @@
-package src.Items.Armor;
+package Items.Armor;
 
 public interface ArmorInterface {
 }

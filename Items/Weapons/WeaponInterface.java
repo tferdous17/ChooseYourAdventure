@@ -1,4 +1,4 @@
-package src.Items.Weapons;
+package Items.Weapons;
 
 public interface WeaponInterface {
     void damage();

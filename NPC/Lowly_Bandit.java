@@ -1,4 +1,4 @@
-package src.NPC;
+package NPC;
 
 public class Lowly_Bandit extends NPC {
     public Lowly_Bandit() {

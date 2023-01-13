@@ -1,6 +1,6 @@
-package src.Items.Armor;
+package Items.Armor;
 
-import src.Items.Item;
+import Items.Item;
 
 public class Leather_Armor extends Item {
     String itemName;
