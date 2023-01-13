@@ -2,7 +2,7 @@ package src.Items.Weapons;
 
 import src.Items.Item;
 
-public class Rusty_Sword extends Item {
+public class Rusty_Sword extends Weapon {
     String itemName;
     double itemPrice;
 

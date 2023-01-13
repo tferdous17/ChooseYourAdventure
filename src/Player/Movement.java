@@ -2,33 +2,42 @@ package src.Player;
 
 public class Movement {
 
-    private int stepCount_X;
-    private int stepCount_Y;
+    private int stepCount;
+    private int x;
+    private int y;
 
     public Movement(int x, int y) {
-        this.stepCount_X = x;
-        this.stepCount_Y = y;
+        this.x = x;
+        this.y = y;
+        stepCount = 0;
     }
 
     public int advanceForward() {
-        return stepCount_Y += 2;
+        stepCount += 1;
+        return y += 2;
     }
 
     public int advanceLeft() {
-        return stepCount_X -= 2;
+        stepCount += 1;
+        return x -= 2;
     }
 
     public int advanceRight() {
-        return stepCount_X += 2;
+        stepCount += 1;
+        return x += 2;
     }
 
     public Movement getPosition() {
-        return new Movement(stepCount_X, stepCount_Y);
+        return new Movement(x, y);
+    }
+
+    public int getStepCount() {
+        return stepCount;
     }
 
     @Override
     public String toString() {
-        return "(" + stepCount_X + ", " + stepCount_Y + ")";
+        return "Step Count: " + getStepCount() + "(" + x + ", " + y + ")";
     }
 
 }
