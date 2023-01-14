@@ -1,12 +1,10 @@
-package Main;
+package src.Main;
 
-import Items.Armor.Leather_Armor;
-import Items.Weapons.Rusty_Sword;
-import NPC.Hog;
-import NPC.Lowly_Bandit;
-import NPC.NPC;
-import NPC.Rogue_Guard;
-import Player.Player;
+import src.Items.Armor.*;
+import src.Items.Item;
+import src.Items.Weapons.*;
+import src.NPC.*;
+import src.Player.*;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -39,8 +37,9 @@ public class UserInterface {
             System.out.println("Caught by surprise by the hastiness, I hesitantly blurt out my name* \n✤ You: 'My name is...' (enter your name)");
             String name = scanner.nextLine();
             player = new Player(name);
-            player.addToInventory(new Rusty_Sword());
-            player.addToInventory(new Leather_Armor());
+            Rusty_Sword sword = new Rusty_Sword();
+            player.addToInventory(sword);
+            player.removeFromInventory(sword);
 
             menu();
         }
@@ -99,13 +98,14 @@ public class UserInterface {
         int choice = scanner.nextInt();
 
         switch (choice) {
-            case 1 -> {
+            case 1 -> { // direction
                 System.out.println("\nWhich direction?");
                 System.out.println("\t1. Forward");
                 System.out.println("\t2. Left");
                 System.out.println("\t3. Right");
                 int directionChoice = scanner.nextInt();
 
+                directionSwitch:
                 switch (directionChoice) {
                     case 1 -> {
                         player.advanceForward();
@@ -130,20 +130,30 @@ public class UserInterface {
                     default -> System.out.println("Invalid direction.");
                 }
             }
-            case 2 -> {
+            case 2 -> { // rest
                 System.out.println("You decide to rest temporarily.");
+                System.out.println("Time passes..");
                 periodicDots();
                 menu();
             }
-            case 3 ->  {
+            case 3 ->  { // view inventory
                 player.viewInventory();
-                menu();
+                System.out.println("\nPress 1 to return.");
+                int returnChoice = scanner.nextInt();
+                if (returnChoice == 1) {
+                    menu();
+                }
             }
-            case 4 -> {
+            case 4 -> { // view stats
                 player.viewStats();
-                menu();
+                System.out.println("\nPress 1 to return.");
+                int returnChoice = scanner.nextInt();
+                if (returnChoice == 1) {
+                    menu();
+                }
             }
-            case 5 -> {
+            case 5 -> { // retire
+                System.out.println("Your adventure comes to a quick end..");
                 break;
             }
             default -> {
@@ -159,6 +169,19 @@ public class UserInterface {
         System.out.println("\t2. Block!");
         System.out.println("\t3. Escape!");
         int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1 -> {
+                System.out.println("You decide to attack!");
+//                Item wep = player.getInventory().lookThruInventory("weapon");
+            }
+            case 2 -> {
+                // placeholder
+            }
+            case 3 -> {
+                // placeholder
+            }
+        }
 
     }
 

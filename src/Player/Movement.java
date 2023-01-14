@@ -1,4 +1,4 @@
-package Player;
+package src.Player;
 
 public class Movement {
 

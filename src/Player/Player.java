@@ -1,6 +1,6 @@
-package Player;
+package src.Player;
 
-import Items.Item;
+import src.Items.Item;
 
 public class Player extends Movement {
     private final String name;
@@ -58,13 +58,20 @@ public class Player extends Movement {
 
     public void viewInventory() {
         inventory.printInventory();
+        System.out.println("Gold: " + getGoldPouch());
     }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+
     public void viewStats() {
-        System.out.println("---------STATS---------");
+        System.out.println("----------STATS----------");
         System.out.println("Name: " + getName());
         System.out.println("Health: " + getHealth());
-        System.out.println("Gold: " + getGoldPouch());
+        System.out.println("NPC Kills: ");
+        System.out.println("Total XP: " + getXP());
     }
 
 

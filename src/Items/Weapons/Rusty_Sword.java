@@ -1,4 +1,6 @@
-package Items.Weapons;
+package src.Items.Weapons;
+
+import src.Items.Item;
 
 public class Rusty_Sword extends Weapon {
     String itemName;
@@ -8,6 +10,7 @@ public class Rusty_Sword extends Weapon {
         super("Rusty Sword", 5);
         itemName = "Rusty Sword";
         itemPrice = 5;
+        setDamage(15);
     }
 
 }
