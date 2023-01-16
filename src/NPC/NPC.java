@@ -1,22 +1,49 @@
 package src.NPC;
 
 public class NPC {
-    String npcType;
-    int health;
-    int damage;
+    private final String npcType;
+    private int health;
+    private int damage = 15;
+    private boolean isAlive;
+
 
     public NPC(String npcType, int health) {
         this.npcType = npcType;
         this.health = health;
-        this.damage = 15;
+        isAlive = true;
     }
 
     public String getNpcType() {
         return npcType;
     }
 
+    public void healthStatus() {
+        if (!(isAlive())) {
+            System.out.println(npcType + " has been defeated!");
+        } else {
+            System.out.println("The " + getNpcType() + " currently has " + health + " health! !GETHEALTH METHOD BEING CALLED!");
+        }
+    }
+
     public int getHealth() {
         return health;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void receiveDamage(int damageValue) {
+        if (health > 0) {
+            this.health -= damageValue;
+        } else {
+            isAlive = false;
+            System.out.println(npcType + " has been defeated!");
+        }
     }
 
     public int attack() {
@@ -25,6 +52,10 @@ public class NPC {
 
     @Override
     public String toString() {
-        return "You've encountered a " + npcType + "!\n" + "Health: " + health;
+        if (health <= 0) {
+            return "You've killed the " + npcType + "!";
+        } else {
+            return "You've encountered a " + getNpcType() + "!\n" + "It has " + getHealth() + " health!";
+        }
     }
 }

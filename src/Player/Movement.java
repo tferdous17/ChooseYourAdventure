@@ -37,7 +37,7 @@ public class Movement {
 
     @Override
     public String toString() {
-        return "Step Count: " + getStepCount() + "(" + x + ", " + y + ")";
+        return "(" + x + ", " + y + ")";
     }
 
 }

@@ -1,7 +1,7 @@
 package src.Items.Weapons;
 
 public interface WeaponInterface {
-    void attack();
+    int attack();
 
     void setDamage(int n);
     int getDamage();

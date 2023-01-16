@@ -1,6 +1,7 @@
 package src.Player;
 
 import src.Items.Item;
+import src.Items.Weapons.Weapon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,12 +14,14 @@ public class Inventory {
             if (!(inventory.containsKey("Weapon"))) {
                 if (!(inventory.containsValue(item))) {
                     inventory.put("Weapon", item);
+                    System.out.println(item + " added to inventory!");
                 }
             }
         } else if (item.getItemType().equals("Armor")) {
             if (!(inventory.containsKey("Armor"))) {
                 if (!(inventory.containsValue(item))) {
                     inventory.put("Armor", item);
+                    System.out.println(item + " added to inventory!");
                 }
             }
         }
@@ -48,9 +51,9 @@ public class Inventory {
         }
     }
 
-    public Item lookThruInventory(String n) {
-        if (inventory.containsKey(n)) {
-            return inventory.get(n);
+    public Weapon getWeapon() {
+        if (inventory.containsKey("Weapon")) {
+            return (Weapon) inventory.get("Weapon");
         }
         return null;
     }

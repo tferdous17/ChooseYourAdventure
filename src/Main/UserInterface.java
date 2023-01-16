@@ -14,6 +14,8 @@ public class UserInterface {
     private Scanner scanner;
     private Player player;
     private Random random = new Random();
+    private NPC npc;
+
 
     public UserInterface(Scanner scanner) {
         this.scanner = scanner;
@@ -38,8 +40,12 @@ public class UserInterface {
             String name = scanner.nextLine();
             player = new Player(name);
             Rusty_Sword sword = new Rusty_Sword();
+            Leather_Armor armor = new Leather_Armor();
             player.addToInventory(sword);
-            player.removeFromInventory(sword);
+            player.addToInventory(armor);
+
+            System.out.println(sword.getDamage());
+
 
             menu();
         }
@@ -108,9 +114,12 @@ public class UserInterface {
                 directionSwitch:
                 switch (directionChoice) {
                     case 1 -> {
+                        System.out.println("You advance forward ever so steadily..");
                         player.advanceForward();
-                        if (player.getStepCount() >= 5) { // if stepCount > 5, there's a 25% chance the player will encounter an NPC
-                            if (random.nextInt(4) + 1 == 2) {
+                        if (player.getStepCount() >= 1) { // if stepCount > 5, there's a 25% chance the player will encounter an NPC
+                            if (random.nextInt(1) + 1 == 1) {
+                                System.out.println("Oh no!");
+                                periodicDots();
                                 npcEncounter();
                             }
                         }
@@ -118,11 +127,13 @@ public class UserInterface {
                         menu();
                     }
                     case 2 -> {
+                        System.out.println("You decide to take a sharp left to see what lies west..");
                         player.advanceLeft();
                         System.out.println(player.getPosition());
                         menu();
                     }
                     case 3 -> {
+                        System.out.println("You decide to take a chance going right to see what lies east..");
                         player.advanceRight();
                         System.out.println(player.getPosition());
                         menu();
@@ -142,6 +153,8 @@ public class UserInterface {
                 int returnChoice = scanner.nextInt();
                 if (returnChoice == 1) {
                     menu();
+                } else {
+                    System.out.println("Invalid entry.");
                 }
             }
             case 4 -> { // view stats
@@ -163,7 +176,7 @@ public class UserInterface {
         }
     }
 
-    private void combatMenu() {
+    private void combatMenu() throws InterruptedException {
         System.out.println("You're in combat! What do you do?");
         System.out.println("\t1. Attack!");
         System.out.println("\t2. Block!");
@@ -172,38 +185,53 @@ public class UserInterface {
 
         switch (choice) {
             case 1 -> {
-                System.out.println("You decide to attack!");
-//                Item wep = player.getInventory().lookThruInventory("weapon");
+                attackSequence(player, npc);
+
             }
             case 2 -> {
                 // placeholder
             }
             case 3 -> {
-                // placeholder
+                periodicDots();
+                System.out.println("With no hesitation, you quickly bolt in the opposite direction!\n");
             }
         }
 
     }
 
-    private void npcEncounter() {
-        int npcRandomSelection = random.nextInt(3)+1;
+    private void npcEncounter() throws InterruptedException {
+        int npcRandomSelection = random.nextInt(1)+1;
         if (player.getLevel() < 3) {
             switch (npcRandomSelection) {
                 case 1 -> {
-                    NPC hog = new Hog();
-                    System.out.println(hog);
+                    npc = new Hog();
+                    System.out.println(npc);
                     combatMenu();
                 }
                 case 2 -> {
-                    NPC lowlyBandit = new Lowly_Bandit();
-                    System.out.println(lowlyBandit);
+//                    NPC lowlyBandit = new Lowly_Bandit();
+//                    System.out.println(lowlyBandit);
+//                    combatMenu();
                 }
                 case 3 -> {
-                    NPC rogueGuard = new Rogue_Guard();
-                    System.out.println(rogueGuard);
+//                    NPC rogueGuard = new Rogue_Guard();
+//                    System.out.println(rogueGuard);
+//                    combatMenu();
                 }
             }
         }
     }
+
+    private void attackSequence(Player player, NPC npc) { // fix method later. infinite loops as of now.
+        System.out.println("You decide to attack!");
+        System.out.println("Before the " + npc.getNpcType() + " can even react!..");
+        while (npc.isAlive()) {
+            npc.receiveDamage(player.getInventory().getWeapon().attack()); // player attacks
+            player.receiveDamage(npc.attack());
+        }
+        System.out.println(player.getHealth());
+    }
+
+
 
 }

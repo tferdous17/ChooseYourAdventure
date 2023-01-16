@@ -13,8 +13,9 @@ public class Weapon extends Item implements WeaponInterface {
     }
 
     @Override
-    public void attack() {
+    public int attack() {
         System.out.println("..With one swift strike, you inflict " + getDamage() + " damage with a " + getItemName() + "!");
+        return getDamage();
     }
 
     @Override

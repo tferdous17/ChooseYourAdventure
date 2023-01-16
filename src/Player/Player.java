@@ -9,6 +9,7 @@ public class Player extends Movement {
     private double goldPouch;
     private int level;
     private int xp;
+    private boolean isAlive;
     private final Inventory inventory = new Inventory();
 
 
@@ -20,6 +21,7 @@ public class Player extends Movement {
         this.goldPouch = 10;
         this.level = 1;
         this.xp = 0;
+        this.isAlive = true;
     }
 
     public String getName() {
@@ -63,6 +65,19 @@ public class Player extends Movement {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void receiveDamage(int damageValue) {
+        if (health > 0) {
+            this.health -= damageValue;
+        } else {
+            isAlive = false;
+            System.out.println("You've been utterly defeated!");
+        }
     }
 
 

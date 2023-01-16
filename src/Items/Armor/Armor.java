@@ -6,4 +6,8 @@ public class Armor extends Item implements ArmorInterface {
     public Armor(String itemName, double itemPrice) {
         super(itemName, itemPrice, "Armor");
     }
+
+    public String getType() {
+        return "Armor";
+    }
 }
