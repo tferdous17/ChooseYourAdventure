@@ -14,6 +14,7 @@ public class UserInterface {
     private Player player;
     private Random random = new Random();
     private NPC npc;
+    private final Combat combat = new Combat();
 
 
     public UserInterface(Scanner scanner) {
@@ -97,7 +98,7 @@ public class UserInterface {
         if (player.getHealth() > 0) {
             System.out.println("\nWhat do you do?");
             System.out.println("\t1. Advance");
-            System.out.println("\t2. Rest");
+            System.out.println("\t2. Rest (Heals HP)");
             System.out.println("\t3. View inventory");
             System.out.println("\t4. View stats");
             System.out.println("\t5. Retire (Game over)");
@@ -117,10 +118,10 @@ public class UserInterface {
                             System.out.println("You advance forward ever so steadily..");
                             player.advanceForward();
                             if (player.getStepCount() >= 1) { // if stepCount > 5, there's a 25% chance the player will encounter an NPC
-                                if (random.nextInt(1) + 1 == 1) {
+                                if (random.nextInt(4) + 1 == 2) {
                                     System.out.println("Oh no!");
                                     periodicDots();
-                                    npcEncounter();
+                                    combat.npcEncounter(player);
                                 }
                             }
                             System.out.println(player.getPosition());
@@ -142,9 +143,9 @@ public class UserInterface {
                     }
                 }
                 case 2 -> { // rest
-                    System.out.println("You decide to rest temporarily.");
-                    System.out.println("Time passes..");
+                    System.out.println("You decide to rest temporarily as time passes..");
                     periodicDots();
+                    player.resetHealth();
                     menu();
                 }
                 case 3 -> { // view inventory
@@ -178,97 +179,7 @@ public class UserInterface {
         }
     }
 
-    private void combatMenu() throws InterruptedException {
-            System.out.println("You're in combat! What do you do?");
-            System.out.println("\t1. Attack!");
-            System.out.println("\t2. Block!");
-            System.out.println("\t3. Escape!");
-            int choice = scanner.nextInt();
 
-            switch (choice) {
-                case 1 -> {
-                    attackSequence(player, npc);
-                }
-                case 2 -> {
-                    // placeholder
-                }
-                case 3 -> {
-                    periodicDots();
-                    System.out.println("With no hesitation, you quickly bolt in the opposite direction!\n");
-                }
-            }
-
-
-    }
-
-    private void npcEncounter() throws InterruptedException {
-        int npcRandomSelection = random.nextInt(1)+1;
-        if (player.getLevel() < 3) {
-            switch (npcRandomSelection) {
-                case 1 -> {
-                    npc = new Hog();
-                    System.out.println(npc);
-                    combatMenu();
-                }
-                case 2 -> {
-//                    NPC lowlyBandit = new Lowly_Bandit();
-//                    System.out.println(lowlyBandit);
-//                    combatMenu();
-                }
-                case 3 -> {
-//                    NPC rogueGuard = new Rogue_Guard();
-//                    System.out.println(rogueGuard);
-//                    combatMenu();
-                }
-            }
-        }
-    }
-
-    private void attackSequence(Player player, NPC npc) throws InterruptedException { // fix method later. infinite loops as of now.
-        if (player.getHealth() > 0) {
-            System.out.println("You decide to attack!");
-            System.out.println("Before the " + npc.getNpcType() + " can even react!..");
-            npc.receiveDamage(player.getInventory().getWeapon().attack()); // player attacks 1, npc receives damage
-            System.out.println("Current health: " + player.getHealth());
-            System.out.println("-------method 1 working (PLAYER ATTACKING, NPC RECEIVING DMG");
-            battleRewards(npc);
-        } else {
-            gameOver();
-        }
-        if (npc.getHealth() > 0 && player.getHealth() > 0) {
-            System.out.println("The " + npc.getNpcType() + " retaliates and inflicts " + npc.attack() + " damage!"); // NPC attacks
-            System.out.println(npc.getNpcType() + "'s current health: " + npc.getHealth());
-            System.out.println("-------method 2.1 working (NPC ATTACKING)");
-            if (player.getHealth() > 0) {
-                player.receiveDamage(npc.attack()); // player receives damage
-                System.out.println("-------method 2.2 working (PLAYER RECEIVES DMG)");
-                combatMenu();
-            }
-        }
-    }
-
-    private void battleRewards(NPC npc) {
-        if (npc.getHealth() <= 0) {
-            System.out.println("You've defeated the " + npc.getNpcType() + "!");
-            System.out.println("-------REWARDS-------");
-            System.out.println("\t✦ XP: +" + npc.getXP());
-            double gold = random.nextInt(34, 42);
-            System.out.println("\t✦ Gold: " + gold + " G");
-            System.out.println("-------method 3 working");
-
-            player.increaseXP(npc.getXP());
-            player.increaseGoldPouch(gold);
-            player.increaseKills();
-
-            System.out.println("\n..You live another day.. Will your luck soon give out?");
-        }
-    }
-
-    private void gameOver() {
-        System.out.println("Your adventure comes to a bloody end.. \nGAME OVER!");
-        System.out.println("-------FINAL STATS-------");
-        player.viewStats();
-    }
 
 
 
