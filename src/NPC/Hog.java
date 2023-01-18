@@ -2,8 +2,8 @@ package src.NPC;
 
 public class Hog extends NPC {
     public Hog() {
-        super("Hog", 125);
-        setDamage(random.nextInt(25, 32));
-        setXP(35);
+        super("Hog", 105);
+        setDamage(random.nextInt(21, 24));
+        setXP(30);
     }
 }
