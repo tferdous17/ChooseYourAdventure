@@ -10,6 +10,7 @@ public class Player extends Movement {
     private int level;
     private int xp;
     private boolean isAlive;
+    private int npcKills;
     private final Inventory inventory = new Inventory();
 
 
@@ -22,6 +23,7 @@ public class Player extends Movement {
         this.level = 1;
         this.xp = 0;
         this.isAlive = true;
+        this.npcKills = 0;
     }
 
     public String getName() {
@@ -29,7 +31,11 @@ public class Player extends Movement {
     }
 
     public int getHealth() {
-        return health;
+        if (health < 0) {
+            return 0;
+        } else {
+            return health;
+        }
     }
 
     public double getGoldPouch() {
@@ -82,12 +88,18 @@ public class Player extends Movement {
 
 
     public void viewStats() {
-        System.out.println("----------STATS----------");
         System.out.println("Name: " + getName());
         System.out.println("Health: " + getHealth());
-        System.out.println("NPC Kills: ");
+        System.out.println("NPC Kills: " + getKills());
         System.out.println("Total XP: " + getXP());
     }
 
+    public int getKills() {
+        return npcKills;
+    }
+
+    public void increaseKills() {
+        npcKills++;
+    }
 
 }

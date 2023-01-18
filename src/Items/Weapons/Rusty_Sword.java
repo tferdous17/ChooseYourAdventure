@@ -10,7 +10,7 @@ public class Rusty_Sword extends Weapon {
         super("Rusty Sword", 5);
         itemName = "Rusty Sword";
         itemPrice = 5;
-        setDamage(15);
+        setDamage(20);
     }
 
 }

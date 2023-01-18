@@ -1,10 +1,14 @@
 package src.NPC;
 
+import java.util.Random;
+
 public class NPC {
     private final String npcType;
     private int health;
     private int damage = 15;
     private boolean isAlive;
+    private int xp;
+    protected Random random = new Random();
 
 
     public NPC(String npcType, int health) {
@@ -26,6 +30,9 @@ public class NPC {
     }
 
     public int getHealth() {
+        if (health < 0) {
+            return 0;
+        }
         return health;
     }
 
@@ -35,6 +42,14 @@ public class NPC {
 
     public void setDamage(int damage) {
         this.damage = damage;
+    }
+
+    public void setXP(int xpAmount) {
+        this.xp = xpAmount;
+    }
+
+    public int getXP() {
+        return xp;
     }
 
     public void receiveDamage(int damageValue) {
