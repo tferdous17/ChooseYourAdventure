@@ -102,4 +102,8 @@ public class Player extends Movement {
         npcKills++;
     }
 
+    public void resetHealth() {
+        health = 100;
+    }
+
 }
