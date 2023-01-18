@@ -2,8 +2,11 @@ package src.Items.Weapons;
 
 import src.Items.Item;
 
+import java.util.Random;
+
 public class Weapon extends Item implements WeaponInterface {
-    int damage;
+    private int damage;
+    protected Random random = new Random();
     public Weapon(String itemName, double itemPrice) {
         super(itemName, itemPrice, "Weapon");
     }
