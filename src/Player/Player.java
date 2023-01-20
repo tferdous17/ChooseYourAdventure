@@ -5,7 +5,8 @@ import src.Items.Item;
 public class Player extends Movement {
     private final String name;
     private final String classType; // only one classType for now
-    private int health;
+    private int currentHealth;
+    private int maxHealth = 100;
     private double goldPouch;
     private int level;
     private int xp;
@@ -18,8 +19,8 @@ public class Player extends Movement {
         super(0, 0);
         this.name = name;
         this.classType = "Adventurer";
-        this.health = 100;
-        this.goldPouch = 10;
+        this.currentHealth = 100;
+        this.goldPouch = 1000;
         this.level = 1;
         this.xp = 0;
         this.isAlive = true;
@@ -31,11 +32,16 @@ public class Player extends Movement {
     }
 
     public int getHealth() {
-        if (health < 0) {
+        if (currentHealth < 0) {
             return 0;
         } else {
-            return health;
+            return currentHealth;
         }
+    }
+
+    public void increaseHealth(int health) {
+        this.maxHealth += health;
+        currentHealth = maxHealth;
     }
 
     public double getGoldPouch() {
@@ -78,8 +84,8 @@ public class Player extends Movement {
     }
 
     public void receiveDamage(int damageValue) {
-        if (health > 0) {
-            this.health -= damageValue;
+        if (currentHealth > 0) {
+            this.currentHealth -= damageValue;
         } else {
             isAlive = false;
             System.out.println("You've been utterly defeated!");
@@ -103,7 +109,7 @@ public class Player extends Movement {
     }
 
     public void resetHealth() {
-        health = 100;
+        currentHealth = maxHealth;
     }
 
 }
