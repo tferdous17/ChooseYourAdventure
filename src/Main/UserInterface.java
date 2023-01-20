@@ -43,10 +43,11 @@ public class UserInterface {
             Leather_Armor armor = new Leather_Armor();
             player.addToInventory(sword);
             player.addToInventory(armor);
+            player.getInventory().getArmor().hpBuff(player);
 
             System.out.println(sword.getDamage());
 
-
+//            introduction();
             menu();
         }
     }
@@ -101,7 +102,8 @@ public class UserInterface {
             System.out.println("\t2. Rest (Heals HP)");
             System.out.println("\t3. View inventory");
             System.out.println("\t4. View stats");
-            System.out.println("\t5. Retire (Game over)");
+            System.out.println("\t5. Visit item shop");
+            System.out.println("\t6. Retire (Game over)");
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -117,25 +119,21 @@ public class UserInterface {
                         case 1 -> {
                             System.out.println("You advance forward ever so steadily..");
                             player.advanceForward();
-                            if (player.getStepCount() >= 1) { // if stepCount > 5, there's a 25% chance the player will encounter an NPC
-                                if (random.nextInt(4) + 1 == 2) {
-                                    System.out.println("Oh no!");
-                                    periodicDots();
-                                    combat.npcEncounter(player);
-                                }
-                            }
+                            encounterPossibility(player);
                             System.out.println(player.getPosition());
                             menu();
                         }
                         case 2 -> {
                             System.out.println("You decide to take a sharp left to see what lies west..");
                             player.advanceLeft();
+                            encounterPossibility(player);
                             System.out.println(player.getPosition());
                             menu();
                         }
                         case 3 -> {
                             System.out.println("You decide to take a chance going right to see what lies east..");
                             player.advanceRight();
+                            encounterPossibility(player);
                             System.out.println(player.getPosition());
                             menu();
                         }
@@ -167,7 +165,12 @@ public class UserInterface {
                         menu();
                     }
                 }
-                case 5 -> { // retire
+                case 5 -> {
+                    Shop shop = new Shop();
+                    shop.shop(player);
+                    menu();
+                }
+                case 6 -> { // retire
                     System.out.println("Your adventure comes to a quick end..");
                     break;
                 }
@@ -178,6 +181,17 @@ public class UserInterface {
             }
         }
     }
+
+    private void encounterPossibility(Player player) throws InterruptedException {
+        if (player.getStepCount() >= 3) { // if stepCount > 3, there's a 25% chance the player will encounter an NPC
+            if (random.nextInt(4) + 1 == 2) {
+                System.out.println("Oh no!");
+                periodicDots();
+                combat.npcEncounter(player);
+            }
+        }
+    }
+
 
 
 
