@@ -7,7 +7,7 @@ public class Leather_Armor extends Armor {
     double itemPrice;
 
     public Leather_Armor() {
-        super("Leather Armor", 10);
+        super("Leather Armor", 10, 25);
         itemName = "Leather Armor";
         itemPrice = 10;
     }
