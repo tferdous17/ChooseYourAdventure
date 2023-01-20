@@ -1,5 +1,6 @@
 package src.Player;
 
+import src.Items.Armor.Armor;
 import src.Items.Item;
 import src.Items.Weapons.Weapon;
 
@@ -28,12 +29,14 @@ public class Inventory {
     }
 
     public void removeFromInventory(Item item) {
+        String toRemove = "";
         if (inventory.containsValue(item)) {
             for (String s : inventory.keySet()) {
                 if (inventory.get(s) == item) {
-                    inventory.remove(s);
+                    toRemove = s;
                 }
             }
+            inventory.remove(toRemove);
             System.out.println(item + " removed from inventory!");
         } else {
             throw new RuntimeException("ERROR: CAN NOT REMOVE ITEM FROM INVENTORY");
@@ -54,6 +57,13 @@ public class Inventory {
     public Weapon getWeapon() {
         if (inventory.containsKey("Weapon")) {
             return (Weapon) inventory.get("Weapon");
+        }
+        return null;
+    }
+
+    public Armor getArmor() {
+        if (inventory.containsKey("Armor")) {
+            return (Armor) inventory.get("Armor");
         }
         return null;
     }
