@@ -66,7 +66,7 @@ public class Combat {
         System.out.println("You decide to brace! (45% damage reduction)");
         // block 45% of the dmg
         if (npc.getHealth() > 0 && player.getHealth() > 0) {
-            System.out.println("The " + npc.getNpcType() + " retaliates and inflicts " + npc.attack() + " damage!"); // NPC attacks
+            System.out.println("The " + npc.getNpcType() + " inflicts " + npc.attack() + " damage!"); // NPC attacks
             System.out.println(npc.getNpcType() + "'s current health: " + npc.getHealth());
             System.out.println("----PLAYER HP CHECK 1: " + player.getHealth());
             System.out.println("-------method 2.1 working (NPC ATTACKING)");
@@ -134,9 +134,18 @@ public class Combat {
         }
     }
 
-    private void gameOver(Player player) {
+    private void gameOver(Player player) throws InterruptedException {
         System.out.println("Your adventure comes to a bloody end.. \nGAME OVER!");
         System.out.println("\n-------FINAL STATS-------");
         player.viewStats();
+
+        System.out.println("\nPlay again? (YES | NO)");
+        String choice1 = scanner.next();
+        if (choice1.equalsIgnoreCase("yes")) {
+            UserInterface ui = new UserInterface(scanner);
+            ui.start();
+        } else if (choice1.equalsIgnoreCase("no")) {
+            System.out.println("\nThanks for playing.");
+        }
     }
 }
