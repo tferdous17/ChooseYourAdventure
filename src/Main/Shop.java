@@ -37,9 +37,9 @@ public class Shop {
 
     private void shopArmor() {
         System.out.println("-------ARMOR-------");
-        System.out.println("\t1. Iron Pauldrons (100.0 G)" + "\t\tHP Buff: 50");
-        System.out.println("\t2. Steel Armor (225.0 G)" + "\t\tHP Buff: 70");
-        System.out.println("\t3. [ELITE] Black Iron Armor (800.0 G)" + "\t\tHP Buff: 185");
+        System.out.println("\t1. Iron Pauldrons (100.0 G)" + "  \n\t\t•HP Buff: 50");
+        System.out.println("\t2. Steel Armor (225.0 G)" + "  \n\t\t•HP Buff: 70");
+        System.out.println("\t3. [ELITE] Black Iron Armor (800.0 G)" + "  \n\t\t•HP Buff: 185");
 
         System.out.println("Your current balance: " + player.getGoldPouch());
 
@@ -55,7 +55,7 @@ public class Shop {
                     player.removeFromInventory(player.getInventory().getArmor());
                     player.addToInventory(ironPauldrons);
                 } else {
-                    System.out.println("Insufficient funds.");
+                    System.out.println("Insufficient funds. Please select a more affordable option.");
                     shopWeaponry();
                 }
             }
@@ -66,7 +66,7 @@ public class Shop {
                     player.removeFromInventory(player.getInventory().getArmor());
                     player.addToInventory(steelArmor);
                 } else {
-                    System.out.println("Insufficient funds.");
+                    System.out.println("Insufficient funds. Please select a more affordable option.");
                     shopWeaponry();
                 }
             }
@@ -77,7 +77,7 @@ public class Shop {
                     player.removeFromInventory(player.getInventory().getArmor());
                     player.addToInventory(blackIronArmor);
                 } else {
-                    System.out.println("Insufficient funds.");
+                    System.out.println("Insufficient funds. Please select a more affordable option.");
                     shopWeaponry();
                 }
             }
@@ -91,9 +91,9 @@ public class Shop {
 
     private void shopWeaponry() {
         System.out.println("-------WEAPONRY-------");
-        System.out.println("\t1. Iron Sword (75.0 G)" + "\t\tDamage: 24-28");
-        System.out.println("\t2. Steel Sword (150.0 G)" + "\t\tDamage: 31-35");
-        System.out.println("\t3. [ELITE] Durandal (650.0 G)" + "\t\tDamage: 65-70");
+        System.out.println("\t1. Iron Sword (75.0 G)" + "  \n\t\t•Damage: 24-28");
+        System.out.println("\t2. Steel Sword (150.0 G)" + "  \n\t\t•Damage: 31-35");
+        System.out.println("\t3. [ELITE] Durandal (650.0 G)" + "  \n\t\t•Damage: 65-70");
 
         System.out.println("Your current balance: " + player.getGoldPouch());
 
@@ -101,6 +101,7 @@ public class Shop {
         int weaponChoice = scanner.nextInt();
 
         switch (weaponChoice) {
+            case 0 -> shop(player);
             case 1 -> {
                 if (player.getGoldPouch() >= 75) {
                     player.increaseGoldPouch(-75);
