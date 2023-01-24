@@ -103,10 +103,11 @@ public class UserInterface {
             System.out.println("\t3. View inventory");
             System.out.println("\t4. View stats");
             System.out.println("\t5. Visit item shop");
-            System.out.println("\t6. Retire (Game over)");
+            System.out.println("\t0. Retire (Game over)");
             int choice = scanner.nextInt();
 
             switch (choice) {
+                case 0 -> System.out.println("Your adventure comes to a quick end..");
                 case 1 -> { // direction
                     System.out.println("\nWhich direction?");
                     System.out.println("\t1. Forward");
@@ -169,10 +170,6 @@ public class UserInterface {
                     Shop shop = new Shop();
                     shop.shop(player);
                     menu();
-                }
-                case 6 -> { // retire
-                    System.out.println("Your adventure comes to a quick end..");
-                    break;
                 }
                 default -> {
                     System.out.println("Invalid selection. Try again.");
